@@ -27,6 +27,12 @@ class ReptilesController < ApplicationController
     redirect_to reptile_path(@reptile)
   end
 
+  def destroy
+    @reptile = Reptile.find(params[:id])
+    @reptile.destroy
+    redirect_to reptiles_path
+  end
+
   private
   def reptile_params
   params.require(:reptile).permit(:title, :body, :image)
