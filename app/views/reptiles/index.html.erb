@@ -21,6 +21,18 @@
                 <% end %>
               </figure>
             </div>
+            <div class="favorite-content">
+              <% if current_user.already_favorited?(reptile) %>
+                <%= link_to reptile_favorites_path(reptile), method: :delete do %>
+                  <i class="fas fa-heart"></i>
+                <% end %>
+              <% else %>
+                <%= link_to reptile_favorites_path(reptile), method: :post do %>
+                  <i class="far fa-heart"></i>
+                <% end %>
+              <% end %>
+              <%= reptile.favorites.count %>
+            </div>
             <div class="card-content">
               <div class="media">
                 <div class="media-left">
