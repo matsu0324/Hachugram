@@ -33,3 +33,23 @@
   background-repeat: none;
   background-size: contain;
 }
+
+.image1 {
+  background-image: url(image1.jpg);
+}
+.image2 {
+  background-image: url(image2.jpg);
+}
+.image3 {
+  background-image: url(image3.jpg);
+}
+.image4 {
+  background-image: url(image4.jpg);
+}
+.image6 {
+  background-image: url(image6.jpg);
+}
+
+#container {
+  height: 600px;
+}

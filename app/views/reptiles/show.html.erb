@@ -1,7 +1,7 @@
-<section class="hero is-success">
+<section class="hero is-white">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title">
+      <h1 class="title" style="text-align: center;">
       詳細
       </h1>
     </div>
@@ -18,18 +18,30 @@
               <%= attachment_image_tag @reptile, :image %>
             </figure>
           </div>
-          <div class="favorite-content">
-            <% if current_user.already_favorited?(@reptile) %>
-              <%= link_to reptile_favorites_path(@reptile), method: :delete do %>
-                <i class="fas fa-heart"></i>
+
+          <ul class="meta-info-cells v4 float-wrapper">
+            <li>
+              <%= link_to user_path(@reptile.user), class: "panel-block" do %>
+                <i class="fas fa-user" aria-hidden="true"><%= @reptile.user.username %></i>
               <% end %>
-            <% else %>
-              <%= link_to reptile_favorites_path(@reptile), method: :create  do %>
-                <i class="far fa-heart"></i>
+            </li>
+            <li>
+              <% if current_user.already_favorited?(@reptile) %>
+                <%= link_to reptile_favorites_path(@reptile), method: :delete do %>
+                  <i class="fas fa-heart"></i>
+                <% end %>
+              <% else %>
+                <%= link_to reptile_favorites_path(@reptile), method: :create  do %>
+                  <i class="far fa-heart"></i>
+                <% end %>
               <% end %>
-            <% end %>
-          <%= @reptile.favorites.count %>
-          </div>
+              <%= @reptile.favorites.count %>
+            </li>
+            <div class="comment-content">
+              <i class="fa fa-comment"></i><%= link_to "#{@reptile.post_comments.count}コメント", reptile_path(@reptile.id) %>
+            </div>
+          </ul>
+
           <div class="card-content">
             <div class="media">
               <div class="media-content">
@@ -55,21 +67,50 @@
 
       <div class="column is-4">
         <article class="panel is-link">
-          <p class="panel-heading">
-            By <%= @reptile.user.username %>
-          </p>
-          <div class="panel-block">
-            <p class="control">
-              <%= @reptile.user.profile %>
-            </p>
+          <div class="comment-list bt style-2" id="comments">
+            <h3 class="section-title left">
+              <span><b>コメント</b></span>
+            </h3>
+            <div class="float-wrapper">
+              <h2 class="comment-count"><%= @reptile.post_comments.count %>件のコメント</h2>
+            </div>
           </div>
-          <%= link_to user_path(@reptile.user), class: "panel-block" do %>
-            <span class="panel-icon">
-              <i class="fas fa-user" aria-hidden="true"></i>
-            </span>
-            <%= @reptile.user.username %>さんのページへ
-          <% end %>
-        </article>
+          <ol>
+            <% @post_comments.each do |comment| %>
+              <li class="comment">
+                <div class="comment-body bb">
+                  <div class="comment-avatar">
+
+                  </div>
+                  <div class="comment-text">
+                    <div class="comment-author clearfix">
+                    <a href="#" class="link-author"><%= comment.user.username %></a>
+                    <div class="content">
+                      <time><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></time>
+                    </div>
+                  </div>
+                  <div class="comment-entry"><%= comment.comment %></div>
+                  <% if comment.user == current_user %>
+                    <div>
+                      <%= link_to '削除', method: :delete, class: "btn btn-danger pull-right" %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              </li>
+            <% end %>
+          </ol>
+          <%= form_with(model:[@reptile, @post_comment], local:true) do |f| %>
+          <div class="row">
+            <div class="col-sm-12">
+              <%= f.text_area :comment, rows:"5", class: "form-control",placeholder: "コメントをここに" %>
+            </div>
+          </div>
+          <%= f.submit '送信する', class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+         <% end %>
+        <div class="section-title-wrapper style-1 v1 mt-30" id="divAddComment">
+        </div>
+       </article>
       </div>
     </div>
   </div>

@@ -6,6 +6,8 @@ class ReptilesController < ApplicationController
 
   def show
     @reptile = Reptile.find(params[:id])
+    @post_comments = PostComment.where(reptile_id:@reptile.id)
+    @post_comment = PostComment.new
   end
 
   def new
