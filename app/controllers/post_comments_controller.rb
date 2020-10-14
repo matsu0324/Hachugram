@@ -6,8 +6,8 @@ class PostCommentsController < ApplicationController
     comment.save
     redirect_to reptile_path(reptile)
   end
-  def destrosy
-    PostComment.find_by(id: params[:id], reptile_id: prams[:reptile_id]).destroy
+  def destroy
+    PostComment.find_by(id: params[:id], reptile_id: params[:reptile_id]).destroy
     redirect_to reptile_path(params[:reptile_id])
   end
 

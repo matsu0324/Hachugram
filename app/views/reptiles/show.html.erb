@@ -76,7 +76,7 @@
             </div>
           </div>
           <ol>
-            <% @post_comments.each do |comment| %>
+            <% @post_comments.each do |post_comment| %>
               <li class="comment">
                 <div class="comment-body bb">
                   <div class="comment-avatar">
@@ -84,15 +84,15 @@
                   </div>
                   <div class="comment-text">
                     <div class="comment-author clearfix">
-                    <a href="#" class="link-author"><%= comment.user.username %></a>
+                    <a href="#" class="link-author"><%= post_comment.user.username %></a>
                     <div class="content">
-                      <time><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></time>
+                      <time><%= post_comment.created_at.strftime("%Y-%m-%d %H:%M") %></time>
                     </div>
                   </div>
-                  <div class="comment-entry"><%= comment.comment %></div>
-                  <% if comment.user == current_user %>
+                  <div class="comment-entry"><%= post_comment.comment %></div>
+                  <% if post_comment.user == current_user %>
                     <div>
-                      <%= link_to '削除', method: :delete, class: "btn btn-danger pull-right" %>
+                      <%= link_to '削除', reptile_post_comment_path(post_comment.reptile, post_comment), method: :delete, class: "btn btn-danger pull-right", "data-confirm" => "削除しますか？" %>
                     </div>
                   <% end %>
                 </div>
