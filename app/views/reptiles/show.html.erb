@@ -84,7 +84,7 @@
                   </div>
                   <div class="comment-text">
                     <div class="comment-author clearfix">
-                    <a href="#" class="link-author"><%= post_comment.user.username %></a>
+                    <%= link_to post_comment.user.username, user_path(post_comment.user.id) %>
                     <div class="content">
                       <time><%= post_comment.created_at.strftime("%Y-%m-%d %H:%M") %></time>
                     </div>
