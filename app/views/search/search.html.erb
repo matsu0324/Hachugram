@@ -1,0 +1,7 @@
+<% if @model == "user" %>
+  <h3>ユーザー検索結果： <%= @content %></h3>
+  <%= render "users/index", users: @records %>
+<% elsif @model == "reptile" %>
+  <h3>はちゅ検索結果: <%= @content %></h3>
+  <%= render "reptiles/index", reptiles: @records %>
+<% end %>

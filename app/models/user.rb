@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :username, presence: true
   attachment :profile_image
-  
+
   has_many :reptiles, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
@@ -30,5 +30,18 @@ class User < ApplicationRecord
 
   def already_favorited?(reptile)
     self.favorites.exists?(reptile_id: reptile.id)
+  end
+
+  #検索機能
+  def self.search_for(content, method)
+    if method == "perfect"
+      User.where(username: content)
+    elsif method == "forward"
+      User.where('username LIKE ?', content + '%')
+    elsif method == "backward"
+      User.where('username LIKE ?', '%' + content)
+    else
+      User.where('username LIKE ?', '%' + content + '%')
+    end
   end
 end

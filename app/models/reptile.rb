@@ -14,4 +14,16 @@ class Reptile < ApplicationRecord
      validates :image
   end
 
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Reptile.where(title: content)
+    elsif method == 'forward'
+      Reptile.Where("title LIKE ?", content + "%")
+    elsif method == "backward"
+      Reptile.where("title LIKE ?", "%" + content)
+    else
+      Reptile.where("title LIKE ?", '%' + content + '%')
+    end
+  end
+
 end

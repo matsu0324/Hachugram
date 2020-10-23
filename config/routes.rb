@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  get '/search' => "search#search"
   devise_for :users
   root to: "home#index"
   resources :users do
@@ -12,4 +12,6 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
+
+  # get '/search', to: 'search#search'
 end
