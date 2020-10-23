@@ -9,54 +9,5 @@
 </section>
 
 <section class="section">
-  <div class="container">
-    <div class="columns is-multiline">
-      <% @reptiles.each do |reptile| %>
-        <div class="column is-4">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <%= link_to reptile_path(reptile) do %>
-                  <%= attachment_image_tag reptile, :image %>
-                <% end %>
-              </figure>
-            </div>
-            <div class="favorite-content">
-              <% if current_user.already_favorited?(reptile) %>
-                <%= link_to reptile_favorites_path(reptile), method: :delete do %>
-                  <i class="fas fa-heart"></i>
-                <% end %>
-              <% else %>
-                <%= link_to reptile_favorites_path(reptile), method: :post do %>
-                  <i class="far fa-heart"></i>
-                <% end %>
-              <% end %>
-              <%= reptile.favorites.count %>
-            </div>
-            <div class="comment-content">
-              <%= link_to "#{reptile.post_comments.count} コメント", reptile_path(reptile.id) %>
-            </div>
-
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                   <%= link_to user_path(reptile.user.id) do %>
-                     <%= attachment_image_tag reptile.user, :profile_image, fallback: "no-image.png", class: "profile_image" %>
-                   <% end %>
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <div class="title"><%= link_to reptile.user.username, user_path(reptile.user.id) %></div>
-                </div>
-              </div>
-              <div class="content">
-                <time><%= reptile.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= render "reptiles/index", reptiles: @reptiles %>
 </section>

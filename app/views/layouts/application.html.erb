@@ -76,11 +76,17 @@
               </p>
             </div>
           </div>
-         </div>
         </div>
+      </div>
       <% end %>
-
     </nav>
+    
+    <% if user_signed_in? %>
+    <div class="container">
+      <%= render "layouts/search" %>
+    </div>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>
