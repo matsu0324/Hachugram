@@ -10,7 +10,13 @@
                 <% end %>
               </figure>
             </div>
-            <%= render 'reptiles/favorites', reptile: reptile %>
+
+            <div id="reptile_<%= reptile.id %>">
+              <div class="favorites">
+                <%= render 'favorites/favorites', reptile: reptile %>
+              </div>
+            </div>
+
             <div class="comment-content">
               <%= link_to "#{reptile.post_comments.count} コメント", reptile_path(reptile.id) %>
             </div>

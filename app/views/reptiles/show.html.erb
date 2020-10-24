@@ -19,24 +19,17 @@
             </figure>
           </div>
 
-          <ul class="meta-info-cells v4 float-wrapper">
+          <ul id="reptile_<%= @reptile.id %>" class="meta-info-cells v4 float-wrapper">
             <li>
               <%= link_to user_path(@reptile.user), class: "panel-block" do %>
                 <i class="fas fa-user" aria-hidden="true"><%= @reptile.user.username %></i>
               <% end %>
             </li>
-            <li>
-              <% if current_user.already_favorited?(@reptile) %>
-                <%= link_to reptile_favorites_path(@reptile), method: :delete do %>
-                  <i class="fas fa-heart"></i>
-                <% end %>
-              <% else %>
-                <%= link_to reptile_favorites_path(@reptile), method: :create  do %>
-                  <i class="far fa-heart"></i>
-                <% end %>
-              <% end %>
-              <%= @reptile.favorites.count %>
+
+            <li class="favorites">
+              <%= render "favorites/favorites", reptile: @reptile %>
             </li>
+
             <div class="comment-content">
               <i class="fa fa-comment"></i><%= link_to "#{@reptile.post_comments.count}コメント", reptile_path(@reptile.id) %>
             </div>

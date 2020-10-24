@@ -1,10 +1,10 @@
 <div class="favorite-content">
   <% if current_user.already_favorited?(reptile) %>
-    <%= link_to reptile_favorites_path(reptile), method: :delete do %>
+    <%= link_to reptile_favorites_path(reptile), method: :delete, remote: true do %>
       <i class="fas fa-heart"></i>
     <% end %>
   <% else %>
-    <%= link_to reptile_favorites_path(reptile), method: :post do %>
+    <%= link_to reptile_favorites_path(reptile), method: :post, remote: true do %>
       <i class="far fa-heart"></i>
     <% end %>
   <% end %>
