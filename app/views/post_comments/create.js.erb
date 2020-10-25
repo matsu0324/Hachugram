@@ -1,0 +1,3 @@
+$("#reptile_<%= @reptile.id %> .comment-content").html("#{reptile.post_comments.count}コメント");
+$(".comments-area").html("<%= j(render 'post_comments/comments', reptile: @reptile, post_comments: @reptile.post_comments) %>");
+$("#post_comment_comment").val("");

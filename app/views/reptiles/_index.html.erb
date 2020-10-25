@@ -1,7 +1,7 @@
 <div class="container">
     <div class="columns is-multiline">
       <% reptiles.each do |reptile| %>
-        <div class="column is-4">
+        <div id="reptile_<%= reptile.id %>" class="column is-4">
           <div class="card">
             <div class="card-image">
               <figure class="image is-4by3">
@@ -11,10 +11,8 @@
               </figure>
             </div>
 
-            <div id="reptile_<%= reptile.id %>">
-              <div class="favorites">
-                <%= render 'favorites/favorites', reptile: reptile %>
-              </div>
+            <div class="favorites">
+              <%= render 'favorites/favorites', reptile: reptile %>
             </div>
 
             <div class="comment-content">
