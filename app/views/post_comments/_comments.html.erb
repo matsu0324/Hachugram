@@ -1,0 +1,34 @@
+  <div class="comment-list bt style-2" id="comments">
+    <h3 class="section-title left">
+      <span><b>コメント</b></span>
+    </h3>
+    <div class="float-wrapper">
+      <h2 class="comment-count"><%= reptile.post_comments.count %>件のコメント</h2>
+    </div>
+  </div>
+
+  <ol>
+    <% post_comments.each do |post_comment| %>
+      <li class="comment">
+        <div class="comment-body bb">
+          <div class="comment-avatar">
+
+          </div>
+          <div class="comment-text">
+            <div class="comment-author clearfix">
+              <%= link_to post_comment.user.username, user_path(post_comment.user.id) %>
+                <div class="content">
+                  <time><%= post_comment.created_at.strftime("%Y-%m-%d %H:%M") %></time>
+                </div>
+            </div>
+          <div class="comment-entry"><%= post_comment.comment %></div>
+          <% if post_comment.user == current_user %>
+            <div>
+              <%= link_to '削除', reptile_post_comment_path(post_comment.reptile, post_comment), method: :delete, remote: true, class: "btn btn-danger pull-right", "data-confirm" => "削除しますか？" %>
+            </div>
+          <% end %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ol>

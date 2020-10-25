@@ -32,12 +32,27 @@ $(document).ready(function () {
     // ナビゲーション矢印の表示(trueで表示)
     arrows : true,
     // スライドショーの自動再生(falseで自動再生なし)
-    autoPlay : false,
+    autoPlay : true,
     // 自動再生時のスライド切替間隔(ミリ秒)
     autoPlayDuration : 3000,
     // キーボードの矢印キーによるスライド送りの設定(trueで有効)
     keyboardOnAlways : true,
     // 一枚目のスライド表示時に戻"矢印を表示するかどうか(falseで非表示)
     hidePrevious : false
+  });
+});
+
+$(function () {
+  $(document).on('turbolinks:load', () => {
+    $('#user_postcode').jpostal({
+      postcode: [
+        '#user_postcode'
+      ],
+      address: {
+        "#user_prefecture_code": "%3",
+        "#user_address_city": "%4%5",
+        "#user_address_street": "%6%7"
+      }
+    });
   });
 });

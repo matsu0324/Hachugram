@@ -37,6 +37,48 @@
         </div>
 
         <div class="field">
+          <%= f.label :postcode, class: "label" %>
+          <p class="control has-icons-left">
+             <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode", :placeholder => "postcode", class: "input" %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-house-user"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="field">
+          <%= f.label :prefecture_code, class: "label" %>
+          <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, class: "input" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :address_city, class: "label" %>
+          <p class="control has-icons-left">
+          <%= f.text_field :address_city, autofocus: true, autocomplete: "address_city", :placeholder => "address_city", class: "input" %>
+          <span class="icon is-small is-left">
+            <i class="fas fa-house-user"></i>
+          </span>
+        </div>
+
+        <div class="field">
+          <%= f.label :address_street, class: "label" %>
+          <p class="control has-icons-left">
+          <%= f.text_field :address_street, autofocus: true, autocomplete: "address_street", :placeholder => "address_street", class: "input" %>
+          <span class="icon is-small is-left">
+            <i class="fas fa-house-user"></i>
+          </span>
+        </div>
+
+        <div class="field">
+          <%= f.label :address_building, class: "label" %>
+          <p class="control has-icons-left">
+          <%= f.text_field :address_building, autofocus: true, autocomplete: "address_building", :placeholder => "address_building", class: "input" %>
+          <span class="icon is-small is-left">
+            <i class="fas fa-house-user"></i>
+          </span>
+        </div>
+
+        <div class="field">
           <%= f.label :password, class: "label" %>
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
