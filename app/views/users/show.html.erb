@@ -35,31 +35,28 @@
                     はちゅを見る
                   <% end %>
                   <% if @user.id == current_user.id %>
-                  <%= link_to edit_reptile_path(reptile),class: "panel-block" do %>
-                    <span class="panel-icon">
-                      <i class="fas fa-edit"></i>
-                    </span>
+                    <%= link_to edit_reptile_path(reptile),class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-edit"></i>
+                      </span>
                       はちゅを編集する
-                  <% end %>
-                  <%= link_to reptile_path(reptile), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
-                    <span class="panel-icon">
-                      <i class="fas fa-trash"></i>
-                    </span>
+                    <% end %>
+                    <%= link_to reptile_path(reptile), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-trash"></i>
+                      </span>
                       はちゅを削除する
+                    <% end %>
                   <% end %>
-                  <% end %>
-                  </div>
                 </div>
-                <div class="content">
-                  <time><%= reptile.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
-                </div>
+              </div>
+              <div class="content">
+                <time><%= reptile.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
               </div>
             </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
-  </section>
-
-
-
+  </div>
+</section>
